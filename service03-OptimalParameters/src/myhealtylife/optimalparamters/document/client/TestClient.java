@@ -54,6 +54,8 @@ public class TestClient {
         ag=op.updateAgeRange(ag);
         
         System.out.println(ag.getFromAge());
+        
+        //op.deleteAgeRange(152);
 	}
 
 }

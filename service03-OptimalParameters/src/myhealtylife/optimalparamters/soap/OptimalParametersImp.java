@@ -80,8 +80,12 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public long deleteAgeRange(long ageRangeId) {
-		// TODO Auto-generated method stub
-		return 0;
+		AgeRange ag= AgeRange.getAgeRangeById(ageRangeId);
+		if(ag==null)
+			return 0;
+		
+		AgeRange.removeAgeRange(ageRangeId);
+		return ageRangeId;
 	}
 
 }
