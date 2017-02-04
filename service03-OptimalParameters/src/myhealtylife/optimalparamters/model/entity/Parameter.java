@@ -1,9 +1,11 @@
 package myhealtylife.optimalparamters.model.entity;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -12,6 +14,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import myhealtylife.optimalparamters.model.dao.OptimalParametersDao;
 
 @Entity
 @Table(name="parameters")
@@ -76,5 +80,13 @@ public class Parameter implements Serializable{
 	public void setAgeRange(AgeRange ageRange) {
 		this.ageRange = ageRange;
 	}
+	
+	public static List<Parameter> getAll() {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        List<Parameter> list = em.createNamedQuery("Parameter.findAll", Parameter.class)
+            .getResultList();
+        OptimalParametersDao.instance.closeConnections(em);
+        return list;
+    }
 
 }
