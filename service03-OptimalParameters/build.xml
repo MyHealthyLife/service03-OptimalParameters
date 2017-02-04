@@ -104,8 +104,8 @@
             </copy>
         </target>
         <target name="start">
-            <echo message="app start myhealthylife.dataservice.document.endpoint.DataServicePublisher in ${build.dir}" />
-            <java classname="myhealthylife.dataservice.document.endpoint.DataServicePublisher" classpath="${build.dir}" fork="true">
+            <echo message="app start myhealtylife.optimalparamters.document.endpoint.OptimalParametersPublisher in ${build.dir}" />
+            <java classname="myhealtylife.optimalparamters.document.endpoint.OptimalParametersPublisher" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
                 <classpath>
                     <path location="build" />
@@ -152,7 +152,7 @@
         </target>
         <!-- make sure you have created first the WebContent folder, including a META-INF folder, WEB-INF/web.xml file and WEB-INF/lib folder -->
         <target name="create.war" depends="install">
-            <war destfile="service01-dataservice.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
+            <war destfile="service03-optimal_parameters.war" webxml="${web.dir}/WebContent/WEB-INF/web.xml">
                 <fileset dir="${web.dir}/WebContent">
                     <include name="**/*.*" />
                 </fileset>
