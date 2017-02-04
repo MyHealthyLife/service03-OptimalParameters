@@ -90,7 +90,7 @@ public class Parameter implements Serializable{
         return list;
     }
 	
-	public static Parameter getPersonById(long personId) {
+	public static Parameter getParameterById(long personId) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
         Parameter p = em.find(Parameter.class, personId);
         OptimalParametersDao.instance.closeConnections(em);
@@ -118,7 +118,7 @@ public class Parameter implements Serializable{
     }
     
     public static void removeParameter(long id) {
-    	Parameter p=getPersonById(id);
+    	Parameter p=getParameterById(id);
     	
     	if(p==null)
     		return;

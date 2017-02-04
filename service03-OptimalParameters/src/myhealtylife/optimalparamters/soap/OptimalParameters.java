@@ -38,7 +38,7 @@ public interface OptimalParameters {
 	
 	@WebMethod(operationName="deleteParameter")
 	@WebResult(name="idParameter")
-	public Long deleteParameter(Long parameterId);
+	public long deleteParameter(long parameterId);
 	
 	@WebMethod(operationName="readAgeRanges")
 	@WebResult(name="AgeRangeList")
@@ -54,7 +54,7 @@ public interface OptimalParameters {
 	
 	@WebMethod(operationName="deleteAgeRange")
 	@WebResult(name="idAgeRange")
-	public Long deleteAgeRange(Long ageRangeId);
+	public long deleteAgeRange(long ageRangeId);
 	
 	
 }

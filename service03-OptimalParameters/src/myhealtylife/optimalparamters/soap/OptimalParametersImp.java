@@ -38,7 +38,7 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public Parameter updateParameter(Parameter p) {
-		Parameter stored=Parameter.getPersonById(p.getIdParameter());
+		Parameter stored=Parameter.getParameterById(p.getIdParameter());
 		stored.setAgeRange(p.getAgeRange());
 		stored.setParameterName(p.getParameterName());
 		stored.setSex(p.getSex());
@@ -47,9 +47,14 @@ public class OptimalParametersImp implements OptimalParameters {
 	}
 
 	@Override
-	public Long deleteParameter(Long parameterId) {
-		// TODO Auto-generated method stub
-		return null;
+	public long deleteParameter(long parameterId) {
+		Parameter p=Parameter.getParameterById(parameterId);
+		
+		if(p==null)
+			return -1L;
+		
+		Parameter.removeParameter(parameterId);
+		return parameterId;
 	}
 
 	@Override
@@ -71,9 +76,9 @@ public class OptimalParametersImp implements OptimalParameters {
 	}
 
 	@Override
-	public Long deleteAgeRange(Long ageRangeId) {
+	public long deleteAgeRange(long ageRangeId) {
 		// TODO Auto-generated method stub
-		return null;
+		return 0;
 	}
 
 }

@@ -35,6 +35,8 @@ public class TestClient {
         op.updateParameter(p);
         
         System.out.println(p.getIdParameter()+" "+p.getValue());
+        
+        //op.deleteParameter(2L);
 	}
 
 }
