@@ -72,8 +72,10 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public AgeRange updateAgeRange(AgeRange ag) {
-		// TODO Auto-generated method stub
-		return null;
+		AgeRange stored=AgeRange.getAgeRangeById(ag.getIdRange());
+		stored.setFromAge(ag.getFromAge());
+		stored.setToAge(ag.getToAge());
+		return AgeRange.updateAgeRange(stored);
 	}
 
 	@Override

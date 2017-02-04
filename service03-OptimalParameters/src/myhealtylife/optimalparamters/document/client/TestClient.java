@@ -47,7 +47,13 @@ public class TestClient {
         
         System.out.println(ag.getIdRange());
         
-        System.out.print(op.readAgeRanges().getAgeRanges().size());
+        System.out.println(op.readAgeRanges().getAgeRanges().size());
+        
+        ag.setFromAge(-1);
+        
+        ag=op.updateAgeRange(ag);
+        
+        System.out.println(ag.getFromAge());
 	}
 
 }
