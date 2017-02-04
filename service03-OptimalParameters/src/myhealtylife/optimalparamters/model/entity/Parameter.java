@@ -14,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.TypedQuery;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import myhealtylife.optimalparamters.model.dao.OptimalParametersDao;
@@ -90,10 +91,12 @@ public class Parameter implements Serializable{
         return list;
     }
 	
-	public static List<Parameter> getAllByAgeAndSex() {
+	public static List<Parameter> getAllByAgeAndSex(String sex, int age) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
-        List<Parameter> list = em.createNamedQuery("Parameter.findAll", Parameter.class)
-            .getResultList();
+        TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p, AgeRange a WHERE p.ageRange.idRange=a.idRange AND p.sex=?1 AND a.fromAge <= ?2 AND a.toAge>=?2", Parameter.class);
+        query.setParameter(1, sex);
+        query.setParameter(2, age);
+        List<Parameter> list=query.getResultList();
         OptimalParametersDao.instance.closeConnections(em);
         return list;
     }

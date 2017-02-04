@@ -33,6 +33,7 @@ public class TestClient {
         System.out.println(p.getIdParameter()+" "+p.getValue());
         
         p.setValue(2.0);
+        p.setSex("M");
         op.updateParameter(p);
         
         System.out.println(p.getIdParameter()+" "+p.getValue());
@@ -41,7 +42,7 @@ public class TestClient {
         
         AgeRange ag=new AgeRange();
         ag.setFromAge(10);
-        ag.setToAge(20);
+        ag.setToAge(200);
         
         ag=op.createAgeRange(ag);
         
@@ -49,13 +50,21 @@ public class TestClient {
         
         System.out.println(op.readAgeRanges().getAgeRanges().size());
         
-        ag.setFromAge(-1);
+        ag.setFromAge(50);
         
         ag=op.updateAgeRange(ag);
         
         System.out.println(ag.getFromAge());
         
         //op.deleteAgeRange(152);
+        
+        p.setAgeRange(ag);
+        
+        op.updateParameter(p);
+        
+        System.out.println(op.readOptimalParameters().getParameters().size());
+        
+        System.out.println(op.readOptimalParametersByAgeAndSex(199, "M").getParameters().size());
 	}
 
 }
