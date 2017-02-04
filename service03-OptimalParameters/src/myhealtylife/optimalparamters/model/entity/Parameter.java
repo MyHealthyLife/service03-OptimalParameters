@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,7 +37,7 @@ public class Parameter implements Serializable{
 	
 	private String sex;
 	
-	private String value;
+	private Double value;
 	
 	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
 	private AgeRange ageRange;
@@ -65,11 +66,11 @@ public class Parameter implements Serializable{
 		this.sex = sex;
 	}
 
-	public String getValue() {
+	public Double getValue() {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(Double value) {
 		this.value = value;
 	}
 
@@ -88,5 +89,48 @@ public class Parameter implements Serializable{
         OptimalParametersDao.instance.closeConnections(em);
         return list;
     }
+	
+	public static Parameter getPersonById(long personId) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        Parameter p = em.find(Parameter.class, personId);
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    }
+	
+	public static Parameter saveParameter(Parameter p) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    } 
+
+    public static Parameter updateParameter(Parameter p) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager(); 
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    }
+    
+    public static void removeParameter(long id) {
+    	Parameter p=getPersonById(id);
+    	
+    	if(p==null)
+    		return;
+    	
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        em.remove(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+    }
+
 
 }

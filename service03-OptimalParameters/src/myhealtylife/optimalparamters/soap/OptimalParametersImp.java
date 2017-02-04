@@ -19,27 +19,31 @@ public class OptimalParametersImp implements OptimalParameters {
 	}
 
 	@Override
-	public ParametersList readOptimalParameters(Integer age, String sex) {
+	public ParametersList readOptimalParametersByAgeAndSex(Integer age, String sex) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ParametersList readOptimalParameters(Integer age, String parameterName, String sex) {
+	public ParametersList readOptimalParametersByNameAgeAndSex(Integer age, String parameterName, String sex) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Parameter createParameter(Parameter p) {
-		// TODO Auto-generated method stub
-		return null;
+		Parameter p1=Parameter.saveParameter(p);
+		return p1;
 	}
 
 	@Override
 	public Parameter updateParameter(Parameter p) {
-		// TODO Auto-generated method stub
-		return null;
+		Parameter stored=Parameter.getPersonById(p.getIdParameter());
+		stored.setAgeRange(p.getAgeRange());
+		stored.setParameterName(p.getParameterName());
+		stored.setSex(p.getSex());
+		stored.setValue(p.getValue());
+		return Parameter.updateParameter(stored);
 	}
 
 	@Override
@@ -67,7 +71,7 @@ public class OptimalParametersImp implements OptimalParameters {
 	}
 
 	@Override
-	public Long deleteAgeRange(Long idAgeRange) {
+	public Long deleteAgeRange(Long ageRangeId) {
 		// TODO Auto-generated method stub
 		return null;
 	}

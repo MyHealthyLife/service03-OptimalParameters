@@ -20,13 +20,13 @@ public interface OptimalParameters {
 	@WebResult(name="parametersList")
 	public ParametersList readOptimalParameters();
 	
-	@WebMethod(operationName="readOptimalParameters")
+	@WebMethod(operationName="readOptimalParametersByAgeAndSex")
 	@WebResult(name="parametersList")
-	public ParametersList readOptimalParameters(Integer age, String sex);
+	public ParametersList readOptimalParametersByAgeAndSex(Integer age, String sex);
 	
-	@WebMethod(operationName="readOptimalParameters")
+	@WebMethod(operationName="readOptimalParametersByNameAgeAndSex")
 	@WebResult(name="parametersList")
-	public ParametersList readOptimalParameters(Integer age,String parameterName ,String sex);
+	public ParametersList readOptimalParametersByNameAgeAndSex(Integer age,String parameterName ,String sex);
 	
 	@WebMethod(operationName="createParameter")
 	@WebResult(name="parameter")
@@ -54,7 +54,7 @@ public interface OptimalParameters {
 	
 	@WebMethod(operationName="deleteAgeRange")
 	@WebResult(name="idAgeRange")
-	public Long deleteAgeRange(Long idAgeRange);
+	public Long deleteAgeRange(Long ageRangeId);
 	
 	
 }
