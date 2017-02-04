@@ -90,6 +90,14 @@ public class Parameter implements Serializable{
         return list;
     }
 	
+	public static List<Parameter> getAllByAgeAndSex() {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        List<Parameter> list = em.createNamedQuery("Parameter.findAll", Parameter.class)
+            .getResultList();
+        OptimalParametersDao.instance.closeConnections(em);
+        return list;
+    }
+	
 	public static Parameter getParameterById(long personId) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
         Parameter p = em.find(Parameter.class, personId);

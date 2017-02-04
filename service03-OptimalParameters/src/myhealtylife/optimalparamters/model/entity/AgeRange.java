@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -13,6 +15,8 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
+
+import myhealtylife.optimalparamters.model.dao.OptimalParametersDao;
 
 @Entity
 @Table(name="age_range")
@@ -67,5 +71,56 @@ public class AgeRange implements Serializable{
 	public void setParameter(List<Parameter> parameter) {
 		this.parameter = parameter;
 	}
+	
+	public static List<AgeRange> getAll() {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        List<AgeRange> list = em.createNamedQuery("AgeRange.findAll", AgeRange.class)
+            .getResultList();
+        OptimalParametersDao.instance.closeConnections(em);
+        return list;
+    }
+
+	
+	public static AgeRange getAgeRangeById(long personId) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        AgeRange p = em.find(AgeRange.class, personId);
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    }
+	
+	public static AgeRange saveAgeRange(AgeRange p) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    } 
+
+    public static AgeRange updateAgeRange(AgeRange p) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager(); 
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+        return p;
+    }
+    
+    public static void removeAgeRange(long id) {
+    	AgeRange p=getAgeRangeById(id);
+    	
+    	if(p==null)
+    		return;
+    	
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        p=em.merge(p);
+        em.remove(p);
+        tx.commit();
+        OptimalParametersDao.instance.closeConnections(em);
+    }
 
 }

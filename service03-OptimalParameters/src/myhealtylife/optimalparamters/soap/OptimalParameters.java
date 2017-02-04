@@ -46,7 +46,7 @@ public interface OptimalParameters {
 	
 	@WebMethod(operationName="createAgeRange")
 	@WebResult(name="AgeRange")
-	public AgeRange createAgeRange();
+	public AgeRange createAgeRange(AgeRange ag);
 	
 	@WebMethod(operationName="updateAgeRange")
 	@WebResult(name="AgeRange")

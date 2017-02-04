@@ -59,14 +59,15 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public AgeRangeList readAgeRanges() {
-		// TODO Auto-generated method stub
-		return null;
+		AgeRangeList list=new AgeRangeList();
+		list.setAgeRanges(AgeRange.getAll());
+		return list;
 	}
 
 	@Override
-	public AgeRange createAgeRange() {
-		// TODO Auto-generated method stub
-		return null;
+	public AgeRange createAgeRange(AgeRange ag) {
+		
+		return AgeRange.saveAgeRange(ag);
 	}
 
 	@Override

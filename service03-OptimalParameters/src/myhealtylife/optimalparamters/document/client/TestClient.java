@@ -8,6 +8,7 @@ import javax.xml.ws.Service;
 
 import org.eclipse.persistence.jpa.config.DataService;
 
+import myhealtylife.optimalparamters.model.entity.AgeRange;
 import myhealtylife.optimalparamters.model.entity.Parameter;
 import myhealtylife.optimalparamters.soap.OptimalParameters;
 
@@ -37,6 +38,16 @@ public class TestClient {
         System.out.println(p.getIdParameter()+" "+p.getValue());
         
         //op.deleteParameter(2L);
+        
+        AgeRange ag=new AgeRange();
+        ag.setFromAge(10);
+        ag.setToAge(20);
+        
+        ag=op.createAgeRange(ag);
+        
+        System.out.println(ag.getIdRange());
+        
+        System.out.print(op.readAgeRanges().getAgeRanges().size());
 	}
 
 }
