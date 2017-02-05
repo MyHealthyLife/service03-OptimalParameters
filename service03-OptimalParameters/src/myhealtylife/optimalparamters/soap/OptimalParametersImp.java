@@ -29,8 +29,9 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public ParametersList readOptimalParametersByNameAgeAndSex(Integer age, String parameterName, String sex) {
-		// TODO Auto-generated method stub
-		return null;
+		ParametersList list=new ParametersList();
+		list.setParameters(Parameter.getAllByAgeSexName(sex, parameterName, age));
+		return list;
 	}
 
 	@Override

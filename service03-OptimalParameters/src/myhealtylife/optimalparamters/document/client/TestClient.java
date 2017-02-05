@@ -26,7 +26,7 @@ public class TestClient {
         OptimalParameters op = service.getPort(OptimalParameters.class);
         
         Parameter p=new Parameter();
-        p.setParameterName("prova");
+        p.setParameterName("test");
         p.setValue(127.0);
         p=op.createParameter(p);
         
@@ -65,6 +65,8 @@ public class TestClient {
         System.out.println(op.readOptimalParameters().getParameters().size());
         
         System.out.println(op.readOptimalParametersByAgeAndSex(199, "M").getParameters().size());
+        
+        System.out.println(op.readOptimalParametersByNameAgeAndSex(199, "Mela", "M").getParameters().size());
 	}
 
 }

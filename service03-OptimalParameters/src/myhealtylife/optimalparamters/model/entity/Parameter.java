@@ -101,6 +101,18 @@ public class Parameter implements Serializable{
         return list;
     }
 	
+	public static List<Parameter> getAllByAgeSexName(String sex, String parameterName, int age) {
+        EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p, AgeRange a WHERE p.ageRange.idRange=a.idRange AND p.sex=?1 AND a.fromAge <= ?2 AND a.toAge>=?2"
+        		+ " AND p.parameterName=?3", Parameter.class);
+        query.setParameter(1, sex);
+        query.setParameter(2, age);
+        query.setParameter(3, parameterName);
+        List<Parameter> list=query.getResultList();
+        OptimalParametersDao.instance.closeConnections(em);
+        return list;
+    }
+	
 	public static Parameter getParameterById(long personId) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
         Parameter p = em.find(Parameter.class, personId);
