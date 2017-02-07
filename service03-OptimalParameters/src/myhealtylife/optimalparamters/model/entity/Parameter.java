@@ -40,7 +40,7 @@ public class Parameter implements Serializable{
 	
 	private Double value;
 	
-	@ManyToOne(cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@ManyToOne(cascade=CascadeType.PERSIST, fetch=FetchType.EAGER)
 	private AgeRange ageRange;
 
 	public long getIdParameter() {

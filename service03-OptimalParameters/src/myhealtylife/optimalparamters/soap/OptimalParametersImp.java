@@ -36,7 +36,7 @@ public class OptimalParametersImp implements OptimalParameters {
 
 	@Override
 	public Parameter createParameter(Parameter p) {
-		Parameter p1=Parameter.saveParameter(p);
+		Parameter p1=Parameter.updateParameter(p);
 		return p1;
 	}
 
