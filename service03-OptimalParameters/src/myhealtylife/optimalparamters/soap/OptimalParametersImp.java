@@ -2,8 +2,6 @@ package myhealtylife.optimalparamters.soap;
 
 import javax.jws.WebService;
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
-
 import myhealtylife.optimalparamters.model.AgeRangeList;
 import myhealtylife.optimalparamters.model.ParametersList;
 import myhealtylife.optimalparamters.model.entity.AgeRange;
