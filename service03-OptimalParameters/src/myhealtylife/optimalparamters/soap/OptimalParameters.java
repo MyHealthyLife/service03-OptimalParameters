@@ -7,6 +7,8 @@ import javax.jws.soap.SOAPBinding;
 import javax.jws.soap.SOAPBinding.Style;
 import javax.jws.soap.SOAPBinding.Use;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
+
 import myhealtylife.optimalparamters.model.AgeRangeList;
 import myhealtylife.optimalparamters.model.ParametersList;
 import myhealtylife.optimalparamters.model.entity.AgeRange;
@@ -23,6 +25,24 @@ public interface OptimalParameters {
 	 * @return
 	 */
 	public ParametersList readOptimalParameters();
+	
+	@WebMethod(operationName="readOptimalParametersBySex")
+	@WebResult(name="parametersList")
+	/**
+	 * this method returns the list of paramters filtered by sex;
+	 * @return
+	 */
+	public ParametersList readOptimalParametersBySex(String sex);
+	
+	@WebMethod(operationName="readOptimalParametersBySexAngAgeRange")
+	@WebResult(name="parametersList")
+	/**
+	 * this method returns the list of paramters filtered by sex and the ageRange
+	 * @param sex
+	 * @param ageFrom
+	 * @return
+	 */
+	public ParametersList readOptimalParametersBySexAngAgeRange(String sex, int ageFrom, int ageTo);
 	
 	@WebMethod(operationName="readOptimalParametersByAgeAndSex")
 	@WebResult(name="parametersList")

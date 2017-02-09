@@ -2,6 +2,8 @@ package myhealtylife.optimalparamters.soap;
 
 import javax.jws.WebService;
 
+import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.ParameterList;
+
 import myhealtylife.optimalparamters.model.AgeRangeList;
 import myhealtylife.optimalparamters.model.ParametersList;
 import myhealtylife.optimalparamters.model.entity.AgeRange;
@@ -90,6 +92,20 @@ public class OptimalParametersImp implements OptimalParameters {
 		
 		AgeRange.removeAgeRange(ageRangeId);
 		return ageRangeId;
+	}
+
+	@Override
+	public ParametersList readOptimalParametersBySex(String sex) {
+		ParametersList list=new ParametersList();
+		list.setParameters(Parameter.getAllBySex(sex));
+		return list;
+	}
+
+	@Override
+	public ParametersList readOptimalParametersBySexAngAgeRange(String sex, int ageFrom, int ageTo) {
+		ParametersList list=new ParametersList();
+		list.setParameters(Parameter.getAllByAgeRangeAndSex(sex, ageFrom, ageTo));
+		return list;
 	}
 
 }
