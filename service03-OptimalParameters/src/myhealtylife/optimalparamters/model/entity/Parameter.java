@@ -19,6 +19,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import myhealtylife.optimalparamters.model.dao.OptimalParametersDao;
 
+/**
+ * This object represent an optimal parameter for an age range
+ * @author stefano
+ *
+ */
 @Entity
 @Table(name="parameters")
 @NamedQuery(name="Parameter.findAll", query="SELECT p FROM Parameter p")
@@ -93,6 +98,7 @@ public class Parameter implements Serializable{
 	
 	public static List<Parameter> getAllByAgeAndSex(String sex, int age) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        /*filtering results by age and sex*/
         TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p, AgeRange a WHERE p.ageRange.idRange=a.idRange AND p.sex=?1 AND a.fromAge <= ?2 AND a.toAge>=?2", Parameter.class);
         query.setParameter(1, sex);
         query.setParameter(2, age);
@@ -103,6 +109,7 @@ public class Parameter implements Serializable{
 	
 	public static List<Parameter> getAllByAgeRangeAndSex(String sex, int ageFrom, int ageTo) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        /*filtering results by age and sex*/
         TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p, AgeRange a WHERE p.ageRange.idRange=a.idRange AND p.sex=?1 AND a.fromAge >= ?2 AND a.toAge<=?3"
         		, Parameter.class);
         query.setParameter(1, sex);
@@ -115,6 +122,7 @@ public class Parameter implements Serializable{
 	
 	public static List<Parameter> getAllByAgeSexName(String sex, String parameterName, int age) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        /*filtering results by age, sex and parameter name*/
         TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p, AgeRange a WHERE p.ageRange.idRange=a.idRange AND p.sex=?1 AND a.fromAge <= ?2 AND a.toAge>=?2"
         		+ " AND p.parameterName=?3", Parameter.class);
         query.setParameter(1, sex);
@@ -127,6 +135,7 @@ public class Parameter implements Serializable{
 	
 	public static List<Parameter> getAllBySex(String sex) {
         EntityManager em = OptimalParametersDao.instance.createEntityManager();
+        /*filtering parameters bt sex*/
         TypedQuery<Parameter> query=em.createQuery("SELECT p FROM Parameter p WHERE p.sex=?1", Parameter.class);
         query.setParameter(1, sex);
         List<Parameter> list=query.getResultList();

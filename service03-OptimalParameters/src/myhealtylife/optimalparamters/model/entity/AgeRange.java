@@ -19,6 +19,11 @@ import javax.xml.bind.annotation.XmlTransient;
 
 import myhealtylife.optimalparamters.model.dao.OptimalParametersDao;
 
+/**
+ * This class represents a range of range and contais the starting age and ending age for the range.
+ * @author stefano
+ *
+ */
 @Entity
 @Table(name="age_range")
 @NamedQuery(name="AgeRange.findAll", query="SELECT a FROM AgeRange a")

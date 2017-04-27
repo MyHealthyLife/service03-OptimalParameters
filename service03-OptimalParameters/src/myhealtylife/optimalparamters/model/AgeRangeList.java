@@ -6,6 +6,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import myhealtylife.optimalparamters.model.entity.AgeRange;
 
+/**
+ * this class is used for encaspulate a list of AgeRange
+ * @author stefano
+ *
+ */
 @XmlRootElement(name="AgeRangeList")
 public class AgeRangeList {
 
